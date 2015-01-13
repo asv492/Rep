@@ -75,7 +75,7 @@ namespace StudyXmlSerialization
             //   string sJSON = oSerializer.Serialize(oList);
             //string json = JsonConvert.SerializeObject(user, Formatting.Indented); 
             //File.WriteAllText(@"c:\user.json", json);
-
+            //test github change
         }
     }
 }
