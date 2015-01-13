@@ -1,0 +1,6 @@
+C:\Users\q\Documents\GitHub\Rep\ConsoleExperiments\StudyXmlSerialization\bin\Debug\StudyXmlSerialization.exe.config
+C:\Users\q\Documents\GitHub\Rep\ConsoleExperiments\StudyXmlSerialization\bin\Debug\StudyXmlSerialization.exe
+C:\Users\q\Documents\GitHub\Rep\ConsoleExperiments\StudyXmlSerialization\bin\Debug\StudyXmlSerialization.pdb
+C:\Users\q\Documents\GitHub\Rep\ConsoleExperiments\StudyXmlSerialization\obj\Debug\StudyXmlSerialization.csprojResolveAssemblyReference.cache
+C:\Users\q\Documents\GitHub\Rep\ConsoleExperiments\StudyXmlSerialization\obj\Debug\StudyXmlSerialization.exe
+C:\Users\q\Documents\GitHub\Rep\ConsoleExperiments\StudyXmlSerialization\obj\Debug\StudyXmlSerialization.pdb
