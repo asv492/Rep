@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyXmlSerialization", "StudyXmlSerialization\StudyXmlSerialization.csproj", "{972C380F-680F-4677-A654-35AD3227B380}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestStudyXmlSerialization", "UnitTestStudyXmlSerialization\UnitTestStudyXmlSerialization.csproj", "{78299D90-6B4C-4A8D-86E7-6EBAE830FE0E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{972C380F-680F-4677-A654-35AD3227B380}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{972C380F-680F-4677-A654-35AD3227B380}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{972C380F-680F-4677-A654-35AD3227B380}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78299D90-6B4C-4A8D-86E7-6EBAE830FE0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78299D90-6B4C-4A8D-86E7-6EBAE830FE0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78299D90-6B4C-4A8D-86E7-6EBAE830FE0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78299D90-6B4C-4A8D-86E7-6EBAE830FE0E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
