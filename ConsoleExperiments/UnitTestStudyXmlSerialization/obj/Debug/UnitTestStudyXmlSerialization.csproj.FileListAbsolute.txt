@@ -1,7 +1,0 @@
-C:\Users\q\Documents\GitHub\Rep\ConsoleExperiments\UnitTestStudyXmlSerialization\obj\Debug\UnitTestStudyXmlSerialization.csprojResolveAssemblyReference.cache
-C:\Users\q\Documents\GitHub\Rep\ConsoleExperiments\UnitTestStudyXmlSerialization\bin\Debug\UnitTestStudyXmlSerialization.dll
-C:\Users\q\Documents\GitHub\Rep\ConsoleExperiments\UnitTestStudyXmlSerialization\bin\Debug\UnitTestStudyXmlSerialization.pdb
-C:\Users\q\Documents\GitHub\Rep\ConsoleExperiments\UnitTestStudyXmlSerialization\bin\Debug\StudyXmlSerialization.exe
-C:\Users\q\Documents\GitHub\Rep\ConsoleExperiments\UnitTestStudyXmlSerialization\bin\Debug\StudyXmlSerialization.pdb
-C:\Users\q\Documents\GitHub\Rep\ConsoleExperiments\UnitTestStudyXmlSerialization\obj\Debug\UnitTestStudyXmlSerialization.dll
-C:\Users\q\Documents\GitHub\Rep\ConsoleExperiments\UnitTestStudyXmlSerialization\obj\Debug\UnitTestStudyXmlSerialization.pdb
