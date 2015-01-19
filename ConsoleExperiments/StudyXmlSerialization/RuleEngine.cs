@@ -8,12 +8,13 @@ namespace StudyXmlSerialization
 {
     public class RuleEngine
     {
-        public Director DirectorObject { get; set; }
+ 
+        //public Director DirectorObject { get; set; }
 
-        public static bool CheckRules(Director dir)
-        {
-            return (EmployedAndSalaryGreaterThan(dir) && EmployedAndAgeGreaterThan(dir));
-        }
+        //public static bool CheckRules(Director dir)
+        //{
+        //    return (EmployedAndSalaryGreaterThan(dir) && EmployedAndAgeGreaterThan(dir));
+        //}
 
         public static bool EmployedAndAgeGreaterThan(Director dir)
         {
@@ -29,7 +30,8 @@ namespace StudyXmlSerialization
             }
             else
             {
-                return false;
+                throw new CustomExceptions.AnyEmployedPersonMustBeOver16YearsOldException();
+                //return false;
             }
         }
 
@@ -41,7 +43,8 @@ namespace StudyXmlSerialization
             }
             else
             {
-                return false;
+                throw new CustomExceptions.EmployedAndSalaryGreaterThanException();
+                //return false;
             }
         }
     }
