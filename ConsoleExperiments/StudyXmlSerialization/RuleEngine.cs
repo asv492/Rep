@@ -47,5 +47,38 @@ namespace StudyXmlSerialization
                 //return false;
             }
         }
+
+        public static bool IsSocialSecNumberUnique(Director dir)
+        {
+            int ssn = dir.SocialSecurityNo;
+            //if (Company.EmployeeRoster.Any(person => ssn == person.SocialSecurityNo))
+            foreach (Person person in Company.EmployeeRoster)
+            {
+                if (ssn == person.SocialSecurityNo)
+                {
+                    throw new CustomExceptions.SocialSecNumberAlreadyExistsException();
+                }
+            }
+
+            return true;
+        }
+
+        public static bool IsUnder80(Director dir)
+        {
+            var birthday = dir.DateOfBirth;
+            DateTime today = DateTime.Today;
+            int age = today.Year - birthday.Year;
+            if (birthday > today.AddYears(-age)) age--;
+
+            if (dir.IsEmployed && age < 80)
+            {
+                return true;
+            }
+            else
+            {
+                throw new CustomExceptions.AnyEmployedPersonMustBeUnder80();
+                //return false;
+            }
+        }
     }
 }

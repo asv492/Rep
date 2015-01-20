@@ -6,7 +6,7 @@
     <ProjectGuid>{78299D90-6B4C-4A8D-86E7-6EBAE830FE0E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UnitTestStudyXmlSerialization</RootNamespace>
+    <RootNamespace>StudyXmlSerialization</RootNamespace>
     <AssemblyName>UnitTestStudyXmlSerialization</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -50,8 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Company.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="AddEmployeeUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

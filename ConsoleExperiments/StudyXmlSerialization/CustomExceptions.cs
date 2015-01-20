@@ -25,5 +25,23 @@ namespace StudyXmlSerialization
                 
             }
         }
+
+        public class SocialSecNumberAlreadyExistsException : Exception
+        {
+            public SocialSecNumberAlreadyExistsException()
+                : base("Social Sec Number Already Exists")
+            {
+                
+            }
+        }
+
+        public class AnyEmployedPersonMustBeUnder80 : Exception
+        {
+            public AnyEmployedPersonMustBeUnder80()
+                : base("Any Employed Person Must Be Under 80")
+            {
+                
+            }
+        }
     }
 }
