@@ -74,6 +74,12 @@ namespace StudyXmlSerialization
             return (rule1 && rule2 && rule3 && rule4);
         }
 
+        public static void FireEmployee(Director dir)
+        {
+            dir.IsEmployed = false;
+            dir.Address = "";
+            dir.Salary = 0;
+        }
 
 
     }

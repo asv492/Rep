@@ -142,7 +142,7 @@ namespace StudyXmlSerialization
                 Salary = 10000,
                 Address = "Boschdijk",
                 DateOfBirth = new DateTime(1915, 12, 31), // older than 80 
-                SocialSecurityNo = 5235343
+                SocialSecurityNo = 5277743
             };
             Company.AddNewEmployee(directorTest1);
         }
