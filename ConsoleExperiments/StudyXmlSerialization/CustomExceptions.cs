@@ -43,5 +43,14 @@ namespace StudyXmlSerialization
                 
             }
         }
+
+        public class AllManagersHaveMaximumEmployeesInTheirTeams : Exception
+        {
+            public AllManagersHaveMaximumEmployeesInTheirTeams()
+                : base("All Managers Have Maximum Employees In Their Teams")
+            {
+                
+            }
+        }
     }
 }

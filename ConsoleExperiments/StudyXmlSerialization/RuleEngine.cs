@@ -9,22 +9,17 @@ namespace StudyXmlSerialization
     public class RuleEngine
     {
  
-        //public Director DirectorObject { get; set; }
 
-        //public static bool CheckRules(Director dir)
-        //{
-        //    return (EmployedAndSalaryGreaterThan(dir) && EmployedAndAgeGreaterThan(dir));
-        //}
 
-        public static bool EmployedAndAgeGreaterThan(Director dir)
+        public static bool EmployedAndAgeGreaterThan(Person pers)
         {
 
-            var birthday = dir.DateOfBirth;
+            var birthday = pers.DateOfBirth;
             DateTime today = DateTime.Today;
             int age = today.Year - birthday.Year;
             if (birthday > today.AddYears(-age)) age--;
 
-            if (dir.IsEmployed && age > 16)
+            if (pers.IsEmployed && age > 16)
             {
                 return true;
             }
@@ -35,9 +30,9 @@ namespace StudyXmlSerialization
             }
         }
 
-        public static bool EmployedAndSalaryGreaterThan(Director dir)
+        public static bool EmployedAndSalaryGreaterThan(Person pers)
         {
-            if (dir.IsEmployed && dir.Salary > 100)
+            if (pers.IsEmployed && pers.Salary > 100)
             {
                 return true;
             }
@@ -48,9 +43,9 @@ namespace StudyXmlSerialization
             }
         }
 
-        public static bool IsSocialSecNumberUnique(Director dir)
+        public static bool IsSocialSecNumberUnique(Person pers)
         {
-            int ssn = dir.SocialSecurityNo;
+            int ssn = pers.SocialSecurityNo;
             //if (Company.EmployeeRoster.Any(person => ssn == person.SocialSecurityNo))
             foreach (Person person in Company.EmployeeRoster)
             {
@@ -63,14 +58,14 @@ namespace StudyXmlSerialization
             return true;
         }
 
-        public static bool IsUnder80(Director dir)
+        public static bool IsUnder80(Person pers)
         {
-            var birthday = dir.DateOfBirth;
+            var birthday = pers.DateOfBirth;
             DateTime today = DateTime.Today;
             int age = today.Year - birthday.Year;
             if (birthday > today.AddYears(-age)) age--;
 
-            if (dir.IsEmployed && age < 80)
+            if (pers.IsEmployed && age < 80)
             {
                 return true;
             }
