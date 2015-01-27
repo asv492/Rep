@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace StudyXmlSerialization
@@ -11,11 +12,10 @@ namespace StudyXmlSerialization
     public class AssignManagerUnitTest
     {
 
- 
-
         [TestMethod]
         public void NewEmployeeIsAssignedToTheFirstTeamLederWithLessThan3Employees()
         {
+            Company.EmployeeRoster.Clear();
             Company.FillEmployeeRoster();
             var engineer1 = new Engineer
             {
@@ -26,10 +26,11 @@ namespace StudyXmlSerialization
                 IsEmployed = true,
                 Salary = 10000,
                 Address = "Boschdijk",
-                DateOfBirth = new DateTime(1975, 12, 31), 
+                DateOfBirth = new DateTime(1975, 12, 31),
                 SocialSecurityNo = 3323443
             };
             Company.AddNewEmployee(engineer1);
+            LinqExperiments();
             Assert.AreEqual(5, Company.EmployeeRoster[10].ManagerId);
 
         }
@@ -38,6 +39,7 @@ namespace StudyXmlSerialization
         [TestMethod]
         public void TeamLeaderHasAlready3Employees_NewEmployeeAssignedToNextTeamLeader()
         {
+            Company.EmployeeRoster.Clear();
             Company.FillEmployeeRoster();
             var engineer1 = new Engineer
             {
@@ -66,13 +68,14 @@ namespace StudyXmlSerialization
             };
             Company.AddNewEmployee(engineer1);
             Company.AddNewEmployee(engineer2);
-
+            LinqExperiments();
             Assert.AreEqual(6, Company.EmployeeRoster[11].ManagerId);
 
         }
         [TestMethod]
         public void ManagerHasAlready2TeamLeader_NewTeamLeaderAssignedToNextManager()
         {
+            Company.EmployeeRoster.Clear();
             Company.FillEmployeeRoster();
             var teamLeader1 = new TeamLeader
             {
@@ -101,8 +104,65 @@ namespace StudyXmlSerialization
             };
             Company.AddNewEmployee(teamLeader1);
             Company.AddNewEmployee(teamLeader2);
-
+            LinqExperiments();
             Assert.AreEqual(4, Company.EmployeeRoster[11].ManagerId);
+
+        }
+
+        [TestMethod]
+        public void LinqExperiments()
+        {
+            //Company.EmployeeRoster.Clear();
+            //Company.FillEmployeeRoster();
+
+            var result = from p in Company.EmployeeRoster
+                         // orderby p.FirstName
+                         select p;
+            foreach (var item in result)
+            {
+                Console.WriteLine("Id:{0} MgrId:{1} {2} {3} {4} {5} IsEmpl:{6} {7} {8}", item.Id, item.ManagerId, item.FirstName, item.LastName,
+                    item.Address, item.DateOfBirth, item.IsEmployed, item.Salary, item.SocialSecurityNo);
+
+            }
+        }
+        [TestMethod]
+        public void LinqExperiments1()
+        {
+            Company.EmployeeRoster.Clear();
+            Company.FillEmployeeRoster();
+
+            var result = from p in Company.EmployeeRoster
+               orderby p.LastName, p.SocialSecurityNo
+                     select p;
+            foreach (var item in result)
+            {
+                Console.WriteLine("Id:{0} MgrId:{1} {2} {3} {4} {5} IsEmpl:{6} {7} {8}", item.Id, item.ManagerId, item.FirstName, item.LastName,
+                    item.Address, item.DateOfBirth, item.IsEmployed, item.Salary, item.SocialSecurityNo);
+
+            }
+        }
+        [TestMethod]
+        public void LinqExperimentsGroupBy()
+        {
+            Company.EmployeeRoster.Clear();
+            Company.FillEmployeeRoster();
+
+            var result = from p in Company.EmployeeRoster
+                         //  orderby p.FirstName
+                         //  orderby p.LastName, p.SocialSecurityNo
+                         group p by p.ManagerId;
+            //  select p;
+            foreach (IGrouping<int, Person> grouping in result)
+            {
+                Console.WriteLine("MgrId:" + grouping.Key + ":");
+                foreach (var item in grouping)
+                {
+                    Console.WriteLine("Id:{0} MgrId:{1} {2} {3} {4} {5} IsEmpl:{6} {7} {8}", item.Id, item.ManagerId, item.FirstName, item.LastName,
+                        item.Address, item.DateOfBirth, item.IsEmployed, item.Salary, item.SocialSecurityNo);
+
+                }
+            }
+
 
         }
 
