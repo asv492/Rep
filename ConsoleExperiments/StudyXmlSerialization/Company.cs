@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using StudyXmlSerialization;
@@ -23,7 +25,7 @@ namespace StudyXmlSerialization
         public static void FillEmployeeRoster()
 
         {
-            EmployeeRoster.Add(new Director { Id = 1,  FirstName = "John", LastName = "Smith", ManagerId = 1, IsEmployed = true, Salary = 1000, Address = "Boschdijk", DateOfBirth = new DateTime(1970, 12, 31), SocialSecurityNo = 1235343 });
+            EmployeeRoster.Add(new Director { Id = 1,  FirstName = "John", LastName = "Smith", ManagerId = 1, IsEmployed = true, Salary = 1000, Address = "Zzzzhdijk", DateOfBirth = new DateTime(1970, 12, 31), SocialSecurityNo = 1235343 });
             EmployeeRoster.Add(new Director { Id = 2, FirstName = "Alice", LastName = "Doe", ManagerId = 1, IsEmployed = true, Salary = 1000, Address = "Boschdijk", DateOfBirth = new DateTime(1970, 12, 31), SocialSecurityNo = 2235343 });
             EmployeeRoster.Add(new Manager { Id = 3, FirstName = "Bob", LastName = "Doe", ManagerId = 2, IsEmployed = true, Salary = 1000, Address = "Boschdijk", DateOfBirth = new DateTime(1970, 12, 31), SocialSecurityNo = 3235343 });
             EmployeeRoster.Add(new Manager { Id = 4, FirstName = "Mike", LastName = "Doe", ManagerId = 1, IsEmployed = true, Salary = 1000, Address = "Boschdijk", DateOfBirth = new DateTime(1970, 12, 31), SocialSecurityNo = 4235343 });
@@ -176,6 +178,22 @@ namespace StudyXmlSerialization
 
 
             return (rule1 && rule2 && rule3 && rule4);
+        }
+        public static void WriteJsonToFile()
+        {
+
+            var stream = new MemoryStream();
+
+            var serJson = new DataContractJsonSerializer(typeof(Person));
+
+            foreach (var listEmployee in Company.EmployeeRoster)
+            {
+                serJson.WriteObject(stream, listEmployee);
+            }
+            string json = Encoding.UTF8.GetString(stream.ToArray());
+            File.WriteAllText(@"C:\Users\q\Documents\CountWords\serializareJSON.json", json);
+
+            stream.Position = 0;
         }
 
         public static void FireEmployee(Person pers)

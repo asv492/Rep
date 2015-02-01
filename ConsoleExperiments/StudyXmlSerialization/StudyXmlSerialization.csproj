@@ -43,13 +43,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Company.cs" />
+    <Compile Include="CsvEmployeeData.cs" />
+    <Compile Include="CsvSerializer.cs" />
     <Compile Include="CustomExceptions.cs" />
+    <Compile Include="Document.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="IDataInterface.cs" />
+    <Compile Include="IDocumentSerializer.cs" />
+    <Compile Include="JsonEmployeeData.cs" />
+    <Compile Include="JsonSerializer.cs" />
     <Compile Include="LeaderInterface.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RuleEngine.cs" />
+    <Compile Include="XmlEmployeeData.cs" />
+    <Compile Include="XmlFileSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
