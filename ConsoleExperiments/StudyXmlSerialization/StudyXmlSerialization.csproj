@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="Company.cs" />
     <Compile Include="CsvEmployeeData.cs" />
+    <Compile Include="CsvExport.cs" />
+    <Compile Include="CsvImport.cs" />
     <Compile Include="CsvSerializer.cs" />
     <Compile Include="CustomExceptions.cs" />
     <Compile Include="Document.cs" />
@@ -62,6 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="notepad.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

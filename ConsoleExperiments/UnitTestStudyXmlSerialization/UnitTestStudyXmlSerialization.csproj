@@ -57,6 +57,8 @@
     <Compile Include="FiringResignUnitTest.cs" />
     <Compile Include="AssignManagerUnitTest.cs" />
     <Compile Include="JsonSerializationTest.cs" />
+    <Compile Include="CsvExportTest.cs" />
+    <Compile Include="CsvImportTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StudyXmlSerialization\StudyXmlSerialization.csproj">
