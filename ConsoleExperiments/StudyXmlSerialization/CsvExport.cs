@@ -29,7 +29,7 @@ namespace StudyXmlSerialization
             StringBuilder sb = new StringBuilder();
             //Get properties using reflection.
             IList<PropertyInfo> propertyInfos = typeof(T).GetProperties();
-
+            //TODO store somehow the type of Employee (Director, Manager etc)
             if (includeHeaderLine)
             {
                 //add header line.

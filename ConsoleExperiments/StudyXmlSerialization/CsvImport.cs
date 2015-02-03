@@ -40,6 +40,7 @@ namespace StudyXmlSerialization
 
                 //read the rest of lines which contain values
                 var line = reader.ReadLine();
+                
                 if (line != null)
                 {
                     var values = line.Split(',');
@@ -48,12 +49,22 @@ namespace StudyXmlSerialization
                         valuesFromOneLine.Add(value);
                     }
                     var person = new Person();
-
+                    //Id	LastName	FirstName	DateOfBirth	SocialSecurityNo	IsEmployed	ManagerId	Address	Salary
+                    person.Id = Convert.ToInt32(valuesFromOneLine[0]);
+                    person.LastName = valuesFromOneLine[1];
                     person.FirstName = valuesFromOneLine[2];
+                    person.DateOfBirth = Convert.ToDateTime(valuesFromOneLine[3]);
                     person.SocialSecurityNo = Convert.ToInt32(valuesFromOneLine[4]);
+                    person.IsEmployed = Convert.ToBoolean(valuesFromOneLine[5]);
+                    person.ManagerId = Convert.ToInt32(valuesFromOneLine[6]);
+                    person.Address = valuesFromOneLine[7];
+                    person.Salary = Convert.ToInt32(valuesFromOneLine[8]);
+                    valuesFromOneLine.Clear();
+                    //TODO Converter<Person, Director>(person, person); ???
                     personList.Add(person);
                 }
             }
+            reader.Close();
             return personList;
         }
     }
