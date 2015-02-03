@@ -48,6 +48,7 @@
     <Compile Include="CsvImport.cs" />
     <Compile Include="CsvSerializer.cs" />
     <Compile Include="CustomExceptions.cs" />
+    <Compile Include="DataInterfaceImplementation.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="IDataInterface.cs" />

@@ -8,5 +8,24 @@ namespace StudyXmlSerialization
 {
     class CsvEmployeeData : IDataInterface
     {
+        public int Add(Person person)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Person Retrieve(int personId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Update(Person person)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool MarkAsNotEmployed(Person person)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace StudyXmlSerialization
 {
-    interface IDataInterface
+    public interface IDataInterface
     {
+        int Add(Person person);
+        Person Retrieve(int personId);
+        bool Update(Person person);
+        bool MarkAsNotEmployed(Person person);
+
     }
 }
