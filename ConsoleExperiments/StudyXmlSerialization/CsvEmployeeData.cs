@@ -6,26 +6,77 @@ using System.Threading.Tasks;
 
 namespace StudyXmlSerialization
 {
-    class CsvEmployeeData : IDataInterface
+    public class CsvEmployeeData : IDataInterface
     {
+        private static string _path = @"C:\Users\q\Documents\CountWords\exportToCSV.csv";
         public int Add(Person person)
         {
-            throw new NotImplementedException();
+            var personList = new List<Person>(ReadPersonList());
+            int highestId = 0;
+            // int highestId = personList.Select(personEntry => personEntry.Id).Concat(new[] { 0 }).Max();
+            foreach (var personEntry in personList)
+            {
+                if (highestId < personEntry.Id)
+                {
+                    highestId = personEntry.Id;
+                }
+            }
+            person.Id = highestId + 1;
+            personList.Add(person);
+            WritePersonList(personList);
+            return person.Id;
+
         }
 
         public Person Retrieve(int personId)
         {
-            throw new NotImplementedException();
+            var personList = new List<Person>(ReadPersonList());
+            foreach (var personEntry in personList)
+            {
+                if (personId == personEntry.Id)
+                {
+                    return personEntry;
+                }
+            }
+            return null;
         }
 
         public bool Update(Person person)
         {
-            throw new NotImplementedException();
+            var personId = person.Id;
+            var personList = new List<Person>(ReadPersonList());
+            foreach (var personEntry in personList)
+            {
+                if (personId == personEntry.Id)
+                {
+                    var placeInList = personList.IndexOf(personEntry);
+                    personList.RemoveAt(placeInList);
+                    personList.Add(person);
+                    WritePersonList(personList);
+
+                    return true;
+                }
+            }
+            return false;
         }
 
         public bool MarkAsNotEmployed(Person person)
         {
-            throw new NotImplementedException();
+            person.IsEmployed = false;
+            return Update(person);
+        }
+
+        private List<Person> ReadPersonList()
+        {
+            List<Person> personList = CsvImport.GetPersonList(_path);
+
+            return personList;
+        }
+
+        private void WritePersonList(List<Person> personList)
+        {
+            var csv = new CsvExport<Person>(personList);
+            csv.ExportToFile(_path);
         }
     }
 }

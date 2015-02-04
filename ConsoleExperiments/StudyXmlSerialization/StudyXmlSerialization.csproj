@@ -43,12 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Company.cs" />
-    <Compile Include="CsvEmployeeData.cs" />
     <Compile Include="CsvExport.cs" />
     <Compile Include="CsvImport.cs" />
     <Compile Include="CsvSerializer.cs" />
     <Compile Include="CustomExceptions.cs" />
-    <Compile Include="DataInterfaceImplementation.cs" />
+    <Compile Include="CsvEmployeeData.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="IDataInterface.cs" />
