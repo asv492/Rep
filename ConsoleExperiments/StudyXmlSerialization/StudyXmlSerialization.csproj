@@ -50,6 +50,7 @@
     <Compile Include="CsvEmployeeData.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="GenericEmployeeData.cs" />
     <Compile Include="IDataInterface.cs" />
     <Compile Include="IDocumentSerializer.cs" />
     <Compile Include="JsonEmployeeData.cs" />
