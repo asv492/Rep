@@ -60,6 +60,7 @@
     <Compile Include="CsvExportTest.cs" />
     <Compile Include="CsvImportTest.cs" />
     <Compile Include="IDataInterfaceTest.cs" />
+    <Compile Include="GenericEmployeeDataTest.cs" />
     <Compile Include="XmlEmployeeDataTest.cs" />
   </ItemGroup>
   <ItemGroup>

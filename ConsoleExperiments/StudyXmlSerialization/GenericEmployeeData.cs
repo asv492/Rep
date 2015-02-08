@@ -8,14 +8,13 @@ using System.Xml.Serialization;
 
 namespace StudyXmlSerialization
 {
-    class GenericEmployeeData<T> : IDataInterface
+   public class GenericEmployeeData
     {
-        private T _typeOfExport;
-        public GenericEmployeeData(T typeOfExport)
+        private IDataInterfaceReadWrite _typeOfExport;
+        public GenericEmployeeData(IDataInterfaceReadWrite typeOfExport)
         {
             this._typeOfExport = typeOfExport;
         }
-        private static string _path = @"C:\Users\q\Documents\CountWords\exportToCSV.csv";
 
         public int Add(Person person)
         {
@@ -74,44 +73,15 @@ namespace StudyXmlSerialization
             return Update(person);
         }
 
-        private List<Person> ReadPersonList()
+        public List<Person> ReadPersonList()
         {
-            if (_typeOfExport.GetType() == typeof(CsvEmployeeData))
-            {
-                List<Person> personList = CsvImport.GetPersonList(_path);
-
-                return personList;
-            }
-            else if (_typeOfExport.GetType() == typeof(XmlEmployeeData))
-            {
-                var myDeserializer = new XmlSerializer(typeof(List<Person>));
-                List<Person> personList;
-                using (
-                    var myFileStream = new FileStream(_path, FileMode.Open))
-                {
-                    personList = (List<Person>)myDeserializer.Deserialize(myFileStream);
-                }
-                return personList;
-            }
-            throw new NotImplementedException("unknown type");
+            var personList = _typeOfExport.ReadPersonList();
+            return personList;
         }
 
-        private void WritePersonList(List<Person> personList)
+        public void WritePersonList(List<Person> personList)
         {
-            if (_typeOfExport.GetType() == typeof(CsvEmployeeData))
-            {
-                var csv = new CsvExport<Person>(personList);
-                csv.ExportToFile(_path);
-            }
-            else if (_typeOfExport.GetType() == typeof(XmlEmployeeData))
-            {
-                var ser = new XmlSerializer(personList.GetType());
-                using (var fs = new System.IO.FileStream(_path, System.IO.FileMode.Create))
-                {
-                    ser.Serialize(fs, personList);
-                }
-            }
-            throw new NotImplementedException("unknown type");
+            _typeOfExport.WritePersonList(personList);
         }
     }
 }

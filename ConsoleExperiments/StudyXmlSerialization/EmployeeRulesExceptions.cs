@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudyXmlSerialization
 {
-    public class CustomExceptions
+    public class EmployeeRulesExceptions
     {
         public class EmployedAndSalaryGreaterThanException : Exception
         {

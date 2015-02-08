@@ -216,7 +216,7 @@ namespace StudyXmlSerialization
                         }
                     }
                 }
-                throw new CustomExceptions.AllManagersHaveMaximumEmployeesInTheirTeams();
+                throw new EmployeeRulesExceptions.AllManagersHaveMaximumEmployeesInTheirTeams();
             }
             else if (newlyHiredPerson is TeamLeader)
             {
@@ -230,7 +230,7 @@ namespace StudyXmlSerialization
                         }
                     }
                 }
-                throw new CustomExceptions.AllManagersHaveMaximumEmployeesInTheirTeams();
+                throw new EmployeeRulesExceptions.AllManagersHaveMaximumEmployeesInTheirTeams();
             }
             else if (newlyHiredPerson is Manager)
             {
@@ -245,7 +245,7 @@ namespace StudyXmlSerialization
                     }
                 }
             }
-            throw new CustomExceptions.AllManagersHaveMaximumEmployeesInTheirTeams();
+            throw new EmployeeRulesExceptions.AllManagersHaveMaximumEmployeesInTheirTeams();
         }
 
     }

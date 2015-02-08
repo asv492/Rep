@@ -45,13 +45,15 @@
     <Compile Include="Company.cs" />
     <Compile Include="CsvExport.cs" />
     <Compile Include="CsvImport.cs" />
+    <Compile Include="CsvReadWrite.cs" />
     <Compile Include="CsvSerializer.cs" />
-    <Compile Include="CustomExceptions.cs" />
+    <Compile Include="EmployeeRulesExceptions.cs" />
     <Compile Include="CsvEmployeeData.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="GenericEmployeeData.cs" />
     <Compile Include="IDataInterface.cs" />
+    <Compile Include="IDataInterfaceReadWrite.cs" />
     <Compile Include="IDocumentSerializer.cs" />
     <Compile Include="JsonEmployeeData.cs" />
     <Compile Include="JsonSerializer.cs" />
@@ -62,6 +64,7 @@
     <Compile Include="RuleEngine.cs" />
     <Compile Include="XmlEmployeeData.cs" />
     <Compile Include="XmlFileSerializer.cs" />
+    <Compile Include="XmlReadWrite.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

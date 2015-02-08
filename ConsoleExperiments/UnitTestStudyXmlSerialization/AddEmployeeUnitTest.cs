@@ -10,7 +10,7 @@ namespace StudyXmlSerialization
     {
 
         [TestMethod]
-        [ExpectedException(typeof(CustomExceptions.AnyEmployedPersonMustBeOver16YearsOldException))]
+        [ExpectedException(typeof(EmployeeRulesExceptions.AnyEmployedPersonMustBeOver16YearsOldException))]
         public void AnyEmployedPersonMustBeOver16YearsOld()
         {
             var directorTest = new Director
@@ -29,7 +29,7 @@ namespace StudyXmlSerialization
         }
 
         [TestMethod]
-        [ExpectedException(typeof(CustomExceptions.EmployedAndSalaryGreaterThanException))]
+        [ExpectedException(typeof(EmployeeRulesExceptions.EmployedAndSalaryGreaterThanException))]
         public void AnyEmployedPersonMustHaveASalaryGreaterThan100WithException()
         {
             var directorTest = new Director
@@ -94,7 +94,7 @@ namespace StudyXmlSerialization
         }
 
         [TestMethod]
-        [ExpectedException(typeof(CustomExceptions.SocialSecNumberAlreadyExistsException))]
+        [ExpectedException(typeof(EmployeeRulesExceptions.SocialSecNumberAlreadyExistsException))]
         public void NewSocialSecNumbersAreUnique()
         {
 
@@ -129,7 +129,7 @@ namespace StudyXmlSerialization
         }
 
         [TestMethod]
-        [ExpectedException(typeof(CustomExceptions.AnyEmployedPersonMustBeUnder80))]
+        [ExpectedException(typeof(EmployeeRulesExceptions.AnyEmployedPersonMustBeUnder80))]
         public void AnyEmployedPersonMustBeUnder80()
         {
             var directorTest1 = new Director

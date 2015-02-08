@@ -13,11 +13,7 @@ namespace StudyXmlSerialization
 
         public static bool EmployedAndAgeGreaterThan(Person pers)
         {
-
-            var birthday = pers.DateOfBirth;
-            DateTime today = DateTime.Today;
-            int age = today.Year - birthday.Year;
-            if (birthday > today.AddYears(-age)) age--;
+            var age = CalculateAge(pers);
 
             if (pers.IsEmployed && age > 16)
             {
@@ -25,7 +21,7 @@ namespace StudyXmlSerialization
             }
             else
             {
-                throw new CustomExceptions.AnyEmployedPersonMustBeOver16YearsOldException();
+                throw new EmployeeRulesExceptions.AnyEmployedPersonMustBeOver16YearsOldException();
                 //return false;
             }
         }
@@ -38,7 +34,7 @@ namespace StudyXmlSerialization
             }
             else
             {
-                throw new CustomExceptions.EmployedAndSalaryGreaterThanException();
+                throw new EmployeeRulesExceptions.EmployedAndSalaryGreaterThanException();
                 //return false;
             }
         }
@@ -46,13 +42,9 @@ namespace StudyXmlSerialization
         public static bool IsSocialSecNumberUnique(Person pers)
         {
             int ssn = pers.SocialSecurityNo;
-            //if (Company.EmployeeRoster.Any(person => ssn == person.SocialSecurityNo))
-            foreach (Person person in Company.EmployeeRoster)
+            if (Company.EmployeeRoster.Any(person => ssn == person.SocialSecurityNo))
             {
-                if (ssn == person.SocialSecurityNo)
-                {
-                    throw new CustomExceptions.SocialSecNumberAlreadyExistsException();
-                }
+                throw new EmployeeRulesExceptions.SocialSecNumberAlreadyExistsException();
             }
 
             return true;
@@ -60,10 +52,7 @@ namespace StudyXmlSerialization
 
         public static bool IsUnder80(Person pers)
         {
-            var birthday = pers.DateOfBirth;
-            DateTime today = DateTime.Today;
-            int age = today.Year - birthday.Year;
-            if (birthday > today.AddYears(-age)) age--;
+            var age = CalculateAge(pers);
 
             if (pers.IsEmployed && age < 80)
             {
@@ -71,9 +60,17 @@ namespace StudyXmlSerialization
             }
             else
             {
-                throw new CustomExceptions.AnyEmployedPersonMustBeUnder80();
+                throw new EmployeeRulesExceptions.AnyEmployedPersonMustBeUnder80();
                 //return false;
             }
+        }
+        private static int CalculateAge(Person pers)
+        {
+            var birthday = pers.DateOfBirth;
+            DateTime today = DateTime.Today;
+            int age = today.Year - birthday.Year;
+            if (birthday > today.AddYears(-age)) age--;
+            return age;
         }
     }
 }
