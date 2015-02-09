@@ -61,6 +61,7 @@
     <Compile Include="CsvImportTest.cs" />
     <Compile Include="IDataInterfaceTest.cs" />
     <Compile Include="GenericEmployeeDataTest.cs" />
+    <Compile Include="ThreeThreadsTest.cs" />
     <Compile Include="XmlEmployeeDataTest.cs" />
   </ItemGroup>
   <ItemGroup>
