@@ -11,6 +11,8 @@ namespace StudyXmlSerialization
     {
         public static Queue<Person> PersonQueue = new Queue<Person>();
         public static List<Person> RosterTest = new List<Person>();
+        public delegate void RosterChangedEventHandler();
+
 
         public static void StartThreads()
         {
@@ -19,12 +21,15 @@ namespace StudyXmlSerialization
 
             var roster = new Roster();
             var rosterWatcher = new RosterWatcher(roster);
-
+            var action = new RosterChangedEventHandler(Roster.AddPerson);
             //3 threads
             var addToQueueTask = new Task(() => FillQueue(1));
+
             addToQueueTask.Start();
-            var watchQueue = new Task(() => QueueWatcher(2));
-            watchQueue.Start();
+            System.Diagnostics.Debug.WriteLine("addToQueueTask started");
+            var watchQueueTask = new Task(() => QueueWatcher(2));
+            watchQueueTask.Start();
+            System.Diagnostics.Debug.WriteLine("watchQueueTask started");
 
         }
 
@@ -35,7 +40,7 @@ namespace StudyXmlSerialization
                 if (PersonQueue.Count != 0)
                 {
                     var ros = new Roster();
-                    ros.AddPerson();
+                    Roster.AddPerson();
 
                     Thread.Sleep(delayInSeconds * 1000);
                 }
@@ -51,6 +56,8 @@ namespace StudyXmlSerialization
                         employeeData.WritePersonList(RosterTest);
                     });
             serializeTask.Start();
+            System.Diagnostics.Debug.WriteLine("serializeTask started");
+
         }
         public class RosterWatcher
         {
@@ -59,22 +66,37 @@ namespace StudyXmlSerialization
             public RosterWatcher(Roster roster)
             {
                 _roster = roster;
-                _roster.RosterChanged += SerializeRoster;
+                Roster.RosterChanged += SerializeRoster; 
             }
 
 
         }
+        public class SampleEventArgs
+        {
+            public SampleEventArgs(string s) { Text = s; }
+            public String Text { get; private set; } // readonly
+        }
 
-        public delegate void RosterChangedEventHandler();
         public class Roster
         {
-            public event RosterChangedEventHandler RosterChanged;
-            public void AddPerson()
+            
+            public static event RosterChangedEventHandler RosterChanged;
+
+
+
+            public static void AddPerson()
             {
                 var personToBeMoved = PersonQueue.Dequeue();
                 RosterTest.Add(personToBeMoved);
-                RosterChanged();
+
+                if (RosterChanged != null)
+                {
+                    RosterChanged();
+                }
+                
             }
+
+
         }
 
 
