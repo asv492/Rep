@@ -38,6 +38,7 @@ Thread3: whenever a change is detected in our "list based db", serialize it
         public void ThreadsAreStarting()
         {
             Console.WriteLine("Start of test");
+
             ThreeThreads.StartThreads();
             Console.ReadLine();
         }

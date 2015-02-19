@@ -9,10 +9,16 @@ namespace StudyXmlSerialization
 {
     public class ThreeThreads
     {
-        public static Queue<Person> PersonQueue = new Queue<Person>();
+        //RosterTest: a list that stores all the employees
         public static List<Person> RosterTest = new List<Person>();
-        public delegate void RosterChangedEventHandler();
+        //PersonQueue: a queue with new employees that have to be added in RosterTest
+        public static Queue<Person> PersonQueue = new Queue<Person>();
 
+        public delegate void RosterChangedEventHandler();
+        //3 threads:
+        public static Task AddToQueueTask = new Task(() => FillQueue(1));
+        public static Task WatchQueueTask = new Task(() => QueueWatcher(2));
+        public static Task SerializeRosterTask;
 
         public static void StartThreads()
         {
@@ -22,20 +28,18 @@ namespace StudyXmlSerialization
             var roster = new Roster();
             var rosterWatcher = new RosterWatcher(roster);
             var action = new RosterChangedEventHandler(Roster.AddPerson);
-            //3 threads
-            var addToQueueTask = new Task(() => FillQueue(1));
 
-            addToQueueTask.Start();
+            if (AddToQueueTask != null) AddToQueueTask.Start();
             System.Diagnostics.Debug.WriteLine("addToQueueTask started");
-            var watchQueueTask = new Task(() => QueueWatcher(2));
-            watchQueueTask.Start();
+            WatchQueueTask.Start();
             System.Diagnostics.Debug.WriteLine("watchQueueTask started");
 
         }
 
         private static void QueueWatcher(int delayInSeconds)
         {
-            while (true)
+            var stopTime = DateTime.Now + TimeSpan.FromSeconds(120);
+            while (stopTime > DateTime.Now)
             {
                 if (PersonQueue.Count != 0)
                 {
@@ -47,57 +51,26 @@ namespace StudyXmlSerialization
             }
         }
 
-        private static void SerializeRoster()
+        public static void SerializeRoster()
         {
-            var serializeTask = new Task(() =>
+            SerializeRosterTask = new Task(() =>
                     {
                         var typeOfExport = new XmlReadWrite();
                         var employeeData = new GenericEmployeeData(typeOfExport);
                         employeeData.WritePersonList(RosterTest);
                     });
-            serializeTask.Start();
+            SerializeRosterTask.Start();
             System.Diagnostics.Debug.WriteLine("serializeTask started");
 
         }
-        public class RosterWatcher
-        {
-            private Roster _roster;
 
-            public RosterWatcher(Roster roster)
-            {
-                _roster = roster;
-                Roster.RosterChanged += SerializeRoster; 
-            }
+        //public class SampleEventArgs
+        //{
+        //    public SampleEventArgs(string s) { Text = s; }
+        //    public String Text { get; private set; } // readonly
+        //}
 
 
-        }
-        public class SampleEventArgs
-        {
-            public SampleEventArgs(string s) { Text = s; }
-            public String Text { get; private set; } // readonly
-        }
-
-        public class Roster
-        {
-            
-            public static event RosterChangedEventHandler RosterChanged;
-
-
-
-            public static void AddPerson()
-            {
-                var personToBeMoved = PersonQueue.Dequeue();
-                RosterTest.Add(personToBeMoved);
-
-                if (RosterChanged != null)
-                {
-                    RosterChanged();
-                }
-                
-            }
-
-
-        }
 
 
 
@@ -113,15 +86,15 @@ namespace StudyXmlSerialization
         }
 
         public static void FillQueue(int delayInSeconds)
+    {
+        Company.EmployeeRoster.Clear();
+        Company.FillEmployeeRoster();
+        var personList = Company.EmployeeRoster;
+        foreach (var person in personList)
         {
-            Company.EmployeeRoster.Clear();
-            Company.FillEmployeeRoster();
-            var personList = Company.EmployeeRoster;
-            foreach (var person in personList)
-            {
-                PersonQueue.Enqueue(person);
-                Thread.Sleep(delayInSeconds * 1000);
-            }
+            PersonQueue.Enqueue(person);
+            Thread.Sleep(delayInSeconds*1000);
         }
+    }
     }
 }
