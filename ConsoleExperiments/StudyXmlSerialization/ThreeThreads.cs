@@ -19,6 +19,8 @@ namespace StudyXmlSerialization
         public static Task AddToQueueTask = new Task(() => FillQueue(1));
         public static Task WatchQueueTask = new Task(() => QueueWatcher(2));
         public static Task SerializeRosterTask;
+        public static DateTime NextStartTime = DateTime.Now + TimeSpan.FromMinutes(3);
+        private static AutoResetEvent event_2 = new AutoResetEvent(false);
 
         public static void StartThreads()
         {
@@ -30,6 +32,7 @@ namespace StudyXmlSerialization
             var action = new RosterChangedEventHandler(Roster.AddPerson);
 
             if (AddToQueueTask != null) AddToQueueTask.Start();
+
             System.Diagnostics.Debug.WriteLine("addToQueueTask started");
             WatchQueueTask.Start();
             System.Diagnostics.Debug.WriteLine("watchQueueTask started");
@@ -38,8 +41,7 @@ namespace StudyXmlSerialization
 
         private static void QueueWatcher(int delayInSeconds)
         {
-            var stopTime = DateTime.Now + TimeSpan.FromSeconds(120);
-            while (stopTime > DateTime.Now)
+            while (NextStartTime > DateTime.Now)
             {
                 if (PersonQueue.Count != 0)
                 {
@@ -53,6 +55,8 @@ namespace StudyXmlSerialization
 
         public static void SerializeRoster()
         {
+           // event_2.WaitOne();
+
             SerializeRosterTask = new Task(() =>
                     {
                         var typeOfExport = new XmlReadWrite();
