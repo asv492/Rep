@@ -20,35 +20,34 @@ Thread3: whenever a change is detected in our "list based db", serialize it
 
 
 
-        [TestMethod]
-        public void TestQueueIsFilledWithPersons()
-        {
+        //[TestMethod]
+        //public void TestQueueIsFilledWithPersons()
+        //{
 
-        ThreeThreads.StartThreads();
-            Console.WriteLine(ThreeThreads.PersonQueue);
-        }
-        [TestMethod]
-        public void TestQueueIsFilledWithOnePersonEachSecond()
-        {
+        //ThreeThreads.StartThreads();
+        //    Console.WriteLine(ThreeThreads.PersonQueue);
+        //}
+        //[TestMethod]
+        //public void TestQueueIsFilledWithOnePersonEachSecond()
+        //{
 
-            ThreeThreads.StartThreads();
-            Console.WriteLine(ThreeThreads.PersonQueue);
-        }
-        [TestMethod]
-        public void ThreadsAreStarting()
-        {
-            Console.WriteLine("Start of test");
+        //    ThreeThreads.StartThreads();
+        //    Console.WriteLine(ThreeThreads.PersonQueue);
+        //}
+        //[TestMethod]
+        //public void ThreadsAreStarting()
+        //{
+        //    Console.WriteLine("Start of test");
 
-            ThreeThreads.StartThreads();
-            Console.ReadLine();
-        }
+        //    ThreeThreads.StartThreads();
+        //    Console.ReadLine();
+        //}
         [TestMethod]
-        public void Test()
+        public void TestRemoveStatic()
         {
+            var tt = new ThreeThreads();
+            tt.StartThreads();
 
-            System.Diagnostics.Debug.WriteLine("tiuytuity");
-            Console.WriteLine("tiuytuity");
-            Console.ReadLine();
         }
     }
 
