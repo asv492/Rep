@@ -51,20 +51,15 @@ namespace StudyXmlSerialization
         {
             _addToQueueTask = new Task(() => FillQueue(1));
             _watchQueueTask = new Task(() => QueueWatcher(2));
-            _serializeRosterTask = new Task(() =>
-            {
-                var typeOfExport = new XmlReadWrite();
-                var employeeData = new GenericEmployeeData(typeOfExport);
-                employeeData.WritePersonList(_rosterTest);
-            });
+
             _personQueue = new Queue<Person>();
             _rosterTest = new List<Person>();
             _nextStartTime = DateTime.Now + TimeSpan.FromMinutes(3);
             _writingToRosterEvent = new AutoResetEvent(false);
             _serializingRosterEvent = new AutoResetEvent(false);
-           // _rosterChanged = new RosterWatcher();
+            // _rosterChanged = new RosterWatcher();
 
-    _rosterChanged = new RosterWatcher();
+            _rosterChanged = new RosterWatcher();
             _rosterChanged.RosterChanged += new RosterChangedEventHandler(SerializeRoster);
         }
 
@@ -76,15 +71,25 @@ namespace StudyXmlSerialization
 
             //var roster = new Roster();
             //var rosterWatcher = new RosterWatcher(roster);
+           // SerializeRoster(true);
 
- 
 
             if (_addToQueueTask != null) _addToQueueTask.Start();
 
             System.Diagnostics.Debug.WriteLine("addToQueueTask started");
             _watchQueueTask.Start();
             System.Diagnostics.Debug.WriteLine("watchQueueTask started");
+           // var allTasks = new[] { _addToQueueTask, _watchQueueTask, _serializeRosterTask };
+            //Task.Factory.ContinueWhenAll(allTasks, FinalWork);
 
+        }
+
+        private static void FinalWork(Task[] tasks)
+        {
+            if (tasks.All(t => t.Status == TaskStatus.RanToCompletion))
+            {
+                System.Diagnostics.Debug.WriteLine("All tasks ran to completion");
+            }
         }
 
         private void QueueWatcher(int delayInSeconds)
@@ -102,11 +107,42 @@ namespace StudyXmlSerialization
 
         public void SerializeRoster(bool status)
         {
-            // event_2.WaitOne();
+            
 
+            _serializeRosterTask = new Task(() =>
+            {
+                var typeOfExport = new XmlReadWrite();
+                var employeeData = new GenericEmployeeData(typeOfExport);
+                employeeData.WritePersonList(_rosterTest);
+            });
+            System.Diagnostics.Debug.WriteLine("serializeTask status: " + _serializeRosterTask.Status);
+
+            //_serializingRosterEvent.WaitOne();
+            System.Diagnostics.Debug.WriteLine("_addToQueueTask status: " + _addToQueueTask.Status);
+            System.Diagnostics.Debug.WriteLine("_watchQueueTask status: " + _watchQueueTask.Status);
 
             _serializeRosterTask.Start();
-            System.Diagnostics.Debug.WriteLine("serializeTask started");
+
+            //wait until this is finished - but how?
+            _serializeRosterTask.Wait();
+            System.Diagnostics.Debug.WriteLine("_addToQueueTask status: " + _addToQueueTask.Status);
+            System.Diagnostics.Debug.WriteLine("_watchQueueTask status: " + _watchQueueTask.Status);
+            _serializingRosterEvent.Set();
+//
+            //
+            //
+           // _serializingRosterEvent.Set();
+            System.Diagnostics.Debug.WriteLine("_addToQueueTask status: " + _addToQueueTask.Status);
+            System.Diagnostics.Debug.WriteLine("_watchQueueTask status: " + _watchQueueTask.Status);
+            //_serializeRosterTask.ContinueWith(_serializingRosterEvent.Set())
+
+            //_serializeRosterTask.Wait();
+            System.Diagnostics.Debug.WriteLine("serializeTask status: " + _serializeRosterTask.Status);
+            //while (true)//!_serializeRosterTask.IsCompleted)
+            //{
+            //    System.Diagnostics.Debug.WriteLine("serializeTask status: " + _serializeRosterTask.Status);
+            //}
+            //System.Diagnostics.Debug.WriteLine("serializeTask started");
 
         }
 
@@ -138,6 +174,7 @@ namespace StudyXmlSerialization
         {
             var personToBeMoved = _personQueue.Dequeue();
             _rosterTest.Add(personToBeMoved);
+            _serializingRosterEvent.WaitOne();
             _rosterChanged.Status = true;
 
 
