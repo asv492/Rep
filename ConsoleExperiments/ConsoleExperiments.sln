@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyXmlSerialization", "St
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestStudyXmlSerialization", "UnitTestStudyXmlSerialization\UnitTestStudyXmlSerialization.csproj", "{78299D90-6B4C-4A8D-86E7-6EBAE830FE0E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGet", "WebGet\WebGet.csproj", "{B2EC22D4-5B3C-4B56-A68B-FFE65BE38DD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGetUnitTest", "WebGetUnitTest\WebGetUnitTest.csproj", "{F6E8EBE1-2384-4745-9DC2-70B83E1B3163}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{78299D90-6B4C-4A8D-86E7-6EBAE830FE0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78299D90-6B4C-4A8D-86E7-6EBAE830FE0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78299D90-6B4C-4A8D-86E7-6EBAE830FE0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2EC22D4-5B3C-4B56-A68B-FFE65BE38DD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2EC22D4-5B3C-4B56-A68B-FFE65BE38DD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2EC22D4-5B3C-4B56-A68B-FFE65BE38DD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2EC22D4-5B3C-4B56-A68B-FFE65BE38DD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6E8EBE1-2384-4745-9DC2-70B83E1B3163}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6E8EBE1-2384-4745-9DC2-70B83E1B3163}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6E8EBE1-2384-4745-9DC2-70B83E1B3163}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6E8EBE1-2384-4745-9DC2-70B83E1B3163}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
